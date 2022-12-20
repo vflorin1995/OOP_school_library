@@ -1,13 +1,15 @@
+# OOP-School-Library
 <a name="readme-top"></a>
+
 
 <div align="center">
 
-  <img src="murple_logo.png" alt="logo" width="140"  height="auto" />
+
+  <img src="https://user-images.githubusercontent.com/93520178/203661672-538bff13-8797-4d20-9b82-372aa011d464.png" alt="logo" width="80"  height="auto" />
   <br/>
 
-  <h3><b>School-lib</b></h3>
-
 </div>
+
 
 # 📗 Table of Contents
 
@@ -15,49 +17,55 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
 - [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Install](#install)
-  - [Usage](#usage)
 - [👥 Authors](#authors)
+- [🔭 Future Features](#future-features)
 - [🤝 Contributing](#contributing)
 - [⭐️ Show your support](#support)
 - [📝 License](#license)
 
-# 📖 School-lib <a name="about-project"></a>
+<!-- PROJECT DESCRIPTION -->
 
-**School-lib** is a project I created a school library app with Ruby.
+# 📖 OOP School Library <a name="about-project"></a>
+
+> The purpose of this project is to build a tool record what books are in a university library and who borrows them. The app will allow the user to: add new students or teachers, add new books, and save records of who borrowed a given book and when.
+
 
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
 
-<details>
-  <summary>Client</summary>
   <ul>
     <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
   </ul>
-</details>
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-To get a local copy up and running, follow these steps.
-
 ### Prerequisites
-
-In order to run this project you need:
-
-VS Code, GIT, Ruby and NPM installed
+- IDE(code editor) like: **Vscode**, **Sublime**, ...etc. 
+- [Git](https://www.linode.com/docs/guides/how-to-install-git-on-linux-mac-and-windows/)
 
 ### Setup
+1. Download the **Zip** file or clone the repo with:
+```bash
+git https://github.com/laiifuu/create-enumerable.git
+```
+2. To access cloned directory run:
+```bash
+cd create-enumerable
+```
 
-Clone this repository to your desired folder using the git clone command
-
-### Usage
-
-Run the code in the console/irb.
+### Install
+> To install the project's dependencies, run:
+```bash
+bundle install
+```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 ## 👥 Authors <a name="authors"></a>
 
@@ -68,23 +76,35 @@ Run the code in the console/irb.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## 🔭 Future Features <a name="key-features"></a>
+
+- **Implement adding new students or teachers functionality**
+- **Implement adding new books functionality**
+- **Implement saving records of who borrowed a given book functionality**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the issues page
+Feel free to check the [issues page](../../issues/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- SUPPORT -->
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project give a star
+
+Give this project a star if you like it !
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
 
 ## 📝 License <a name="license"></a>
 
 This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
