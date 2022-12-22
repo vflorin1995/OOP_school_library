@@ -6,4 +6,4 @@ def main
   app.menu
 end
 
-main()
+main
