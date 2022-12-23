@@ -107,7 +107,7 @@ class Teacher < Person
   end
 end
 
-class Main
+class App
   def initialize
     @book = []
     @people = []
@@ -239,7 +239,7 @@ class Main
       puts 'please type person id'
       id = gets.chomp.to_i
       @rental.each do |r|
-        puts "\n\n#{r.book} rented by #{r.person} on #{r.date}\n\n" if r.person.id == id
+        puts "\n\nDate: #{r.date}, Book: \"#{r.book.title}\" by #{r.book.author} \n\n" if r.person.id == id
       end
     end
     menu
