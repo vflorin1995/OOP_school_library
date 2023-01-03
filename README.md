@@ -74,6 +74,11 @@ bundle install
 - GitHub: [@vflorin1995](https://github.com/vflorin1995)
 - LinkedIn: [@florin--voicu](https://linkedin.com/in/florin--voicu)
 
+👤 **Kugonza Joel**
+
+- GitHub: [@Joel-100](https://github.com/Joel-100)
+- LinkedIn: [@Joel Kugonza](https://www.linkedin.com/in/joel-kugonza/)
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🔭 Future Features <a name="key-features"></a>
