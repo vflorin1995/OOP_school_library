@@ -1,5 +1,7 @@
+require_relative './nameble'
+
 class Person < Nameble
-  attr_reader :id, :rentals, :name, :age
+  attr_reader :id, :rental, :name, :age
 
   def initialize(age, name = 'Unknown', permission: true)
     super()
