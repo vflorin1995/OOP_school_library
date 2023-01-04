@@ -2,8 +2,8 @@ def list_all_books_stored
   if File.exist?('books.json') && !File.zero?('books.json')
     bookfile = File.open('books.json')
     bookjson = bookfile.read
-    JSON.parse(bookjson, object_class: OpenStruct).map do |bok|
-      xmas = Book.new(bok.title, bok.author)
+    JSON.parse(bookjson).map do |bok|
+      xmas = Book.new(bok['title'], bok['author'])
       @book.push(xmas)
     end
     bookfile.close
@@ -16,11 +16,11 @@ def list_all_people_stored
   if File.exist?('people.json') && !File.zero?('people.json')
     pplfile = File.open('people.json')
     ppljson = pplfile.read
-    JSON.parse(ppljson, object_class: OpenStruct).map do |ppl|
-      if ppl.classroom
-        @people.push(Student.new(ppl.classroom, ppl.age, ppl.name, permission: ppl.permission))
+    JSON.parse(ppljson).map do |ppl|
+      if ppl['classroom']
+        @people.push(Student.new(ppl['classroom'], ppl['age'], ppl['name'], permission: ppl['permission']))
       else
-        @people.push(Teacher.new(ppl.specialization, ppl.age, ppl.name, permission: true))
+        @people.push(Teacher.new(ppl['specialization'], ppl['age'], ppl['name'], permission: true))
       end
     end
     pplfile.close
@@ -33,10 +33,10 @@ def list_all_rentals_stored
   if File.exist?('rentals.json') && !File.zero?('rentals.json')
     rentalfile = File.open('rentals.json')
     rentaljson = rentalfile.read
-    JSON.parse(rentaljson, object_class: OpenStruct).map do |rent|
-      book = Book.new(rent.book.title, rent.book.author)
-      person = Student.new('11a', rent.person.age, rent.person.name, rent.person.id, permission: true)
-      item = Rental.new(rent.date, book, person)
+    JSON.parse(rentaljson).map do |rent|
+      book = Book.new(rent['book']['title'], rent['book']['author'])
+      person = Student.new('11a', rent['person']['age'], rent['person']['name'], rent['person']['id'])
+      item = Rental.new(rent['date'], book, person)
       @rental.push(item)
     end
     rentalfile.close

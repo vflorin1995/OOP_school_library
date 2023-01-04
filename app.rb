@@ -142,8 +142,7 @@ class App
                             author: item.book.author },
                     person: { id: item.person.id,
                               name: item.person.name,
-                              age: item.person.age,
-                              permission: item.person.permission }
+                              age: item.person.age }
                   })
     end
     json = JSON.generate(jsonel)
