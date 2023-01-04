@@ -134,19 +134,17 @@ class App
     person = @people[personind]
     rental = Rental.new(date, book, person)
     @rental.push(rental)
+    store_rental
+  end
+
+  def store_rental
     jsonel = []
     @rental.each do |item|
-      jsonel.push({
-                    date: item.date,
-                    book: { title: item.book.title,
-                            author: item.book.author },
-                    person: { id: item.person.id,
-                              name: item.person.name,
-                              age: item.person.age }
-                  })
+      jsonel.push({ date: item.date,
+                    book: { title: item.book.title, author: item.book.author },
+                    person: { id: item.person.id, name: item.person.name, age: item.person.age } })
     end
-    json = JSON.generate(jsonel)
-    File.write('rentals.json', json)
+    File.write('rentals.json', JSON.generate(jsonel))
     menu
   end
 
