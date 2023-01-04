@@ -3,7 +3,7 @@ require_relative './nameble'
 class Person < Nameble
   attr_reader :id, :rental, :name, :age
 
-  def initialize(age, name = 'Unknown', id, permission: true)
+  def initialize(age, id, name = 'Unknown', permission: true)
     super()
     @name = name
     @age = age

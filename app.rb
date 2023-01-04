@@ -2,6 +2,7 @@ require_relative './student'
 require_relative './teacher'
 require_relative './book'
 require_relative './rental'
+require_relative './stored'
 require 'json'
 
 class App
@@ -49,20 +50,6 @@ class App
     end
   end
 
-  def list_all_books_stored
-    if File.exist?('books.json') && !File.zero?('books.json')
-      bookfile = File.open('books.json')
-      bookjson = bookfile.read
-      lista = JSON.parse(bookjson, object_class: OpenStruct).map do |bok|
-        xmas = Book.new(bok.title, bok.author)
-        @book.push(xmas)
-      end
-      bookfile.close
-    else
-      File.new('books.json', 'w')
-    end
-  end
-
   def list_all_books
     if @book.empty?
       (puts "\n\nThere are no books\n\n")
@@ -70,25 +57,6 @@ class App
       @book.each { |b| puts "\n\n#{b.title} written by #{b.author}\n\n" }
     end
     menu
-  end
-
-  def list_all_people_stored
-    if File.exist?('people.json') && !File.zero?('people.json')
-      pplfile = File.open('people.json')
-      ppljson = pplfile.read
-      lista = JSON.parse(ppljson, object_class: OpenStruct).map do |ppl|
-        if ppl.classroom
-          man = Student.new(ppl.classroom, ppl.age, ppl.name, permission: ppl.permission)
-          @people.push(man)
-        else
-          man = Teacher.new(ppl.specialization, ppl.age, ppl.name, permission: true)
-          @people.push(man)
-        end
-      end
-      pplfile.close
-    else
-      File.new('people.json', 'w')
-    end
   end
 
   def list_all_people
@@ -139,21 +107,6 @@ class App
     person_to_string
   end
 
-  def person_to_string
-    jsonel = []
-    @people.each do |item|
-      if item.instance_of?(Student)
-        jsonel.push({ classroom: item.classroom, age: item.age, name: item.name, permission: item.permission,
-                      id: item.id })
-      else
-        jsonel.push({ age: item.age, name: item.name, permission: true, id: item.id })
-      end
-    end
-    json = JSON.generate(jsonel)
-    File.write('people.json', json)
-    menu
-  end
-
   def create_a_book
     puts 'title'
     titl = gets.chomp
@@ -181,9 +134,6 @@ class App
     person = @people[personind]
     rental = Rental.new(date, book, person)
     @rental.push(rental)
-
-    p @rental
-
     jsonel = []
     @rental.each do |item|
       jsonel.push({
@@ -198,24 +148,7 @@ class App
     end
     json = JSON.generate(jsonel)
     File.write('rentals.json', json)
-
     menu
-  end
-
-  def list_all_rentals_stored
-    if File.exist?('rentals.json') && !File.zero?('rentals.json')
-      rentalfile = File.open('rentals.json')
-      rentaljson = rentalfile.read
-      lista = JSON.parse(rentaljson, object_class: OpenStruct).map do |rent|
-        book = Book.new(rent.book.title, rent.book.author)
-        person = Student.new('11a', rent.person.age, rent.person.name, rent.person.id, permission: true)
-        item = Rental.new(rent.date, book, person)
-        @rental.push(item)
-      end
-      rentalfile.close
-    else
-      File.new('rentals.json', 'w')
-    end
   end
 
   def list_all_rentals
