@@ -50,8 +50,8 @@ class App
   end
 
   def list_all_books_stored
-    if File.exists?("books.json") && !File.zero?("books.json")
-      bookfile = File.open("books.json")
+    if File.exist?('books.json') && !File.zero?('books.json')
+      bookfile = File.open('books.json')
       bookjson = bookfile.read
       lista = JSON.parse(bookjson, object_class: OpenStruct).map do |bok|
         xmas = Book.new(bok.title, bok.author)
@@ -59,7 +59,7 @@ class App
       end
       bookfile.close
     else
-      File.new("books.json","w")
+      File.new('books.json', 'w')
     end
   end
 
@@ -73,8 +73,8 @@ class App
   end
 
   def list_all_people_stored
-    if File.exists?("people.json") && !File.zero?("people.json")
-      pplfile = File.open("people.json")
+    if File.exist?('people.json') && !File.zero?('people.json')
+      pplfile = File.open('people.json')
       ppljson = pplfile.read
       lista = JSON.parse(ppljson, object_class: OpenStruct).map do |ppl|
         if ppl.classroom
@@ -87,7 +87,7 @@ class App
       end
       pplfile.close
     else
-      File.new("people.json","w")
+      File.new('people.json', 'w')
     end
   end
 
@@ -143,13 +143,14 @@ class App
     jsonel = []
     @people.each do |item|
       if item.instance_of?(Student)
-        jsonel.push({classroom: item.classroom, age: item.age, name: item.name, permission: item.permission, id: item.id})
+        jsonel.push({ classroom: item.classroom, age: item.age, name: item.name, permission: item.permission,
+                      id: item.id })
       else
-        jsonel.push({age: item.age, name: item.name, permission: true, id: item.id})
+        jsonel.push({ age: item.age, name: item.name, permission: true, id: item.id })
       end
     end
     json = JSON.generate(jsonel)
-    File.write("people.json", json)
+    File.write('people.json', json)
     menu
   end
 
@@ -161,9 +162,9 @@ class App
     x = Book.new(titl, auth)
     @book.push(x)
     jsonel = []
-    @book.each { |item| jsonel.push({title: item.title, author: item.author}) }
+    @book.each { |item| jsonel.push({ title: item.title, author: item.author }) }
     json = JSON.generate(jsonel)
-    File.write("books.json", json)
+    File.write('books.json', json)
     menu
   end
 
@@ -184,38 +185,36 @@ class App
     p @rental
 
     jsonel = []
-    @rental.each do |item| 
+    @rental.each do |item|
       jsonel.push({
-    date: item.date, 
-    book: {title: item.book.title, 
-             author: item.book.author}, 
-    person: {id: item.person.id,
-             name: item.person.name,
-             age: item.person.age, 
-             permission: item.person.permission}
-          })
-        end
+                    date: item.date,
+                    book: { title: item.book.title,
+                            author: item.book.author },
+                    person: { id: item.person.id,
+                              name: item.person.name,
+                              age: item.person.age,
+                              permission: item.person.permission }
+                  })
+    end
     json = JSON.generate(jsonel)
-    File.write("rentals.json", json)
-    
+    File.write('rentals.json', json)
+
     menu
   end
 
   def list_all_rentals_stored
-    if File.exists?("rentals.json") && !File.zero?("rentals.json")
-      rentalfile = File.open("rentals.json")
+    if File.exist?('rentals.json') && !File.zero?('rentals.json')
+      rentalfile = File.open('rentals.json')
       rentaljson = rentalfile.read
       lista = JSON.parse(rentaljson, object_class: OpenStruct).map do |rent|
-        
         book = Book.new(rent.book.title, rent.book.author)
         person = Student.new('11a', rent.person.age, rent.person.name, rent.person.id, permission: true)
         item = Rental.new(rent.date, book, person)
         @rental.push(item)
-      
       end
       rentalfile.close
     else
-      File.new("rentals.json","w")
+      File.new('rentals.json', 'w')
     end
   end
 
