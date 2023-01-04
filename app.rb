@@ -2,12 +2,17 @@ require_relative './student'
 require_relative './teacher'
 require_relative './book'
 require_relative './rental'
+require_relative './stored'
+require 'json'
 
 class App
   def initialize
     @book = []
     @people = []
     @rental = []
+    list_all_books_stored
+    list_all_people_stored
+    list_all_rentals_stored
   end
 
   def menu
@@ -87,7 +92,7 @@ class App
     perm = gets.chomp
     x = Student.new(cls, age, name, permission: perm)
     @people.push(x)
-    menu
+    person_to_string
   end
 
   def create_a_teacher
@@ -99,7 +104,7 @@ class App
     name = gets.chomp
     x = Teacher.new(spec, age, name)
     @people.push(x)
-    menu
+    person_to_string
   end
 
   def create_a_book
@@ -109,6 +114,10 @@ class App
     auth = gets.chomp
     x = Book.new(titl, auth)
     @book.push(x)
+    jsonel = []
+    @book.each { |item| jsonel.push({ title: item.title, author: item.author }) }
+    json = JSON.generate(jsonel)
+    File.write('books.json', json)
     menu
   end
 
@@ -125,6 +134,17 @@ class App
     person = @people[personind]
     rental = Rental.new(date, book, person)
     @rental.push(rental)
+    store_rental
+  end
+
+  def store_rental
+    jsonel = []
+    @rental.each do |item|
+      jsonel.push({ date: item.date,
+                    book: { title: item.book.title, author: item.book.author },
+                    person: { id: item.person.id, name: item.person.name, age: item.person.age } })
+    end
+    File.write('rentals.json', JSON.generate(jsonel))
     menu
   end
 
