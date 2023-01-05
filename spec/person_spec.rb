@@ -24,7 +24,7 @@ describe "Test the person class" do
         expect(minor1.can_use_services?).to eq(true)
         expect(minor2.can_use_services?).to eq(false)
         expect(major1.can_use_services?).to eq(true)
-        expect(major1.can_use_services?).to eq(true)
+        expect(major2.can_use_services?).to eq(true)
     end
 
     it "Test the correct name method" do
