@@ -1,4 +1,4 @@
-require_relative 'nameble.rb'
+require_relative 'nameble'
 
 class Decorator < Nameble
   def initialize(nameble)
