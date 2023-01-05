@@ -1,7 +1,7 @@
 require_relative './nameble'
 
 class Person < Nameble
-  attr_reader :id, :rental, :name, :age
+  attr_reader :id, :rental, :name, :age, :permission
 
   def initialize(age, name = 'Unknown', id = Random.rand(1..1000), permission: true)
     super()
@@ -13,7 +13,7 @@ class Person < Nameble
   end
 
   def can_use_services?
-    of_age? || @parent_permission
+    of_age? || @permission
   end
 
   def correct_name
